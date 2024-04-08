@@ -4,11 +4,13 @@ package auth;
 
 option go_package = "grevtsov.sso.v1;ssov1";
 
+import "google/protobuf/empty.proto";
+
 service Auth {
   rpc Register (RegisterRequest) returns (RegisterResponse);
   rpc Login (LoginRequest) returns (LoginResponse);
   rpc IsAdmin (IsAdminRequest) returns (IsAdminResponse);
-  rpc Logout (LogoutRequest) returns (LogoutResponse);
+  rpc Logout (google.protobuf.Empty) returns (google.protobuf.Empty);
 }
 
 message RegisterRequest {
@@ -38,10 +40,3 @@ message IsAdminResponse {
   bool isAdmin = 1;
 }
 
-message LogoutRequest {
-  string token = 1;
-}
-
-message LogoutResponse {
-  bool success = 1;
-}
